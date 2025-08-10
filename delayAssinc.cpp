@@ -44,7 +44,8 @@ void DelayAssinc::verificar() {
 
 uint32_t DelayAssinc::tempo_restante_comp(String nome){
   // usando o indice direto por só existir a bomba de delay composto
-  // mudar isso quando houver mais de um
+
+  /* mudar isso quando houver mais de um delay composto*/
   uint32_t tempo_atual = this->tempo_atual_ts + (millis() / 1000);
 
   if (this->lista_composta[0].delayAtual){
@@ -56,17 +57,17 @@ uint32_t DelayAssinc::tempo_restante_comp(String nome){
 }
 
 /*
-LEMBRAR DE ARMAZENAR O ULTIMO DELAY NO CARTÃO SD
-PELO AMOR DE DEUS
+Não é necessário lembrar quando o sensor mediu pela última vez,
+já que sempre que o arduino liga ele já faz uma medição automáticamente
 */
 void DelayAssinc::novoDelaySeg(String nome, void (*funcao)(), uint32_t delay) {
-  // trocar esse 0 pelo tempo do rtc
+  // último delay iniciando com 0
   lista_simples[tamanho_atual_simples] = { nome, funcao, delay, 0 };
   tamanho_atual_simples++;
 }
 
 void DelayAssinc::novoDelaySeg(String nome, void (*funcao)(), uint32_t delay1, uint32_t delay2) {
-  // trocar esse 0 pelo tempo do rtc
+  // último delay iniciando com 0
   lista_composta[tamanho_atual_composto] = { nome, funcao, delay1, delay2, 0, 0 };
   tamanho_atual_composto++;
 }

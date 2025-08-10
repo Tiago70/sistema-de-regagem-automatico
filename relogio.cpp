@@ -5,13 +5,14 @@ void relogioObj::begin(int CE, int IO, int CLK) {
   this->rtc = new Ds1302(CE, IO, CLK);
   this->rtc->init();
 
-  // comentar o código abaixo para definir o horário apenas uma vez
+  // código de configuração do horário do rtc
+  // (deve ser executado apenas uma vez)
   Ds1302::DateTime dt;
 
   dt.year = 25;    // Ano 2025 (últimos dois dígitos)
   dt.month = 6;    // Junho
   dt.day = 17;     // Dia 17
-  dt.dow = 2;      // Terça-feira (0 = domingo, 1 = segunda, ..., 6 = sábado)
+  dt.dow = 2;      // Dia da semana (Terça-feira) 0-6
   dt.hour = 15;    // 15h
   dt.minute = 20;  // 20 minutos
   dt.second = 0;   // Começa em 00 segundos
@@ -68,6 +69,7 @@ uint32_t relogioObj::timestamp() {
   return (dia * 24 * 60 * 60) + (hora * 60 * 60) + (minuto * 60) + segundo;
 }
 
+// retorna as horas minutos e segundos atuais de forma formatada
 String relogioObj::getTempoString() {
   Ds1302::DateTime now;
   this->rtc->getDateTime(&now);

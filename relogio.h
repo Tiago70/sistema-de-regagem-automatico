@@ -1,3 +1,9 @@
+/*
+Relógio usado para registro dos horários das medições.
+
+Também pode ser usado para agendar regagens e lembrar regagens.
+*/
+
 #include <stdint.h>
 #ifndef __RELOGIO_
 #define __RELOGIO_

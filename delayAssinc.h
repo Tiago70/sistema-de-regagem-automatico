@@ -1,10 +1,18 @@
+/*
+Biblioteca para o funcionamento e gerenciamento
+de delays assícronos baseado em máquina de estado.
+
+Este código apenas atualiza o estado dos objetos
+indicando se está na hora de medir ou não
+*/
+
 #ifndef __DELAY_ASSINC_
 #define __DELAY_ASSINC_
 
 #include <stdint.h>
 #include <Arduino.h>
 
-// tamanho dos vetores de funções (estático para ser mais simples)
+// tamanho dos vetores de funções (estático para ser mais rápido)
 #define LISTA_SIMPLES 5
 #define LISTA_COMPOSTA 1
 

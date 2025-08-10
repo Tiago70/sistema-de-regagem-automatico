@@ -15,6 +15,8 @@ private:
 
 public:
   Condutivimetro(uint8_t pino, Temperatura* temperatura);
+  
+  // variável indicando o estado
   static bool hora_de_medir;
 
   void begin() override;

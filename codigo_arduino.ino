@@ -6,6 +6,7 @@
 #include "cartaoSD.h"
 #include "display.h"
 
+
 // adicionar a biblioteca quando utilar o rtc
 // #include "relogio.h"
 
@@ -31,19 +32,20 @@ void setup() {
   tela.begin(&temp_sensor, &condut_sensor, &lumin_sensor, &bomba_regagem);
 
   // definindo os intervalos (valor em milisegundos)
-  DelayAssincrono.novoDelaySeg("temperatura", temp_sensor.ativar_medicao, 5);
-  DelayAssincrono.novoDelaySeg("condutividade", condut_sensor.ativar_medicao, 5);
-  DelayAssincrono.novoDelaySeg("luminosidade", lumin_sensor.ativar_medicao, 5);
-  DelayAssincrono.novoDelaySeg("boma", bomba_regagem.trocar_estado, 5, 10);
-  DelayAssincrono.novoDelaySeg("Cartao SD", micro_SD.autorizar_anotacao, 5);
-  DelayAssincrono.novoDelaySeg("tela", tela.autorizar, 1);
+  DelayAssincrono.novoDelayMillis("temperatura", temp_sensor.ativar_medicao, 5000);
+  DelayAssincrono.novoDelayMillis("condutividade", condut_sensor.ativar_medicao, 5000);
+  DelayAssincrono.novoDelayMillis("luminosidade", lumin_sensor.ativar_medicao, 5000);
+  DelayAssincrono.novoDelayMillis("boma", bomba_regagem.trocar_estado, 5000, 10000);
+  DelayAssincrono.novoDelayMillis("tela", tela.autorizar, 1000);
+
+  // DelayAssincrono.novoDelayMillis("Cartao SD", micro_SD.autorizar_anotacao, 5);
 
   // interrupção para o botão de trocar de tela
   pinMode(2, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(2), trocar_tela, FALLING);
 
-  micro_SD.novo_arquivo("dados");
-  micro_SD.escrever("dados", "Temperatura,Luminosidade,Condutividade\n");
+  // micro_SD.novo_arquivo("dados");
+  // micro_SD.escrever("dados", "Temperatura,Luminosidade,Condutividade\n");
 }
 
 void loop() {

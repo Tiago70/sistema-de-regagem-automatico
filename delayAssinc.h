@@ -38,8 +38,6 @@ typedef struct {
 // objeto para controle dos intervalos
 class DelayAssinc{
 private:
-  uint32_t tempo_atual_ts;
-
   delay_simples lista_simples[LISTA_SIMPLES];
   uint8_t tamanho_atual_simples;
 
@@ -51,8 +49,8 @@ public:
   void verificar();
   uint32_t tempo_restante_comp(String nome);
 
-  void novoDelaySeg(String nome, void (*funcao)(), uint32_t delay);
-  void novoDelaySeg(String nome, void (*funcao)(), uint32_t delay1, uint32_t delay2);
+  void novoDelayMillis(String nome, void (*funcao)(), uint32_t delay);
+  void novoDelayMillis(String nome, void (*funcao)(), uint32_t delay1, uint32_t delay2);
 };
 
 extern DelayAssinc DelayAssincrono;

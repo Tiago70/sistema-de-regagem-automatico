@@ -76,12 +76,12 @@ void Display::tela1() {
   this->lcd->setCursor(0, 3);
   String tempo_bomba;
   if (this->bomba_regagem->estado) {
-    tempo_bomba = String(DelayAssincrono.tempo_restante_comp("bomba") / 1000);
+    tempo_bomba = relogio.formatarSeg(DelayAssincrono.tempo_restante_comp("bomba") / 1000);
     this->lcd->print("Em espera");
     this->lcd->setCursor(this->para_esquerda(tempo_bomba), 3);
     this->lcd->print(tempo_bomba);
   } else {
-    tempo_bomba = String(DelayAssincrono.tempo_restante_comp("bomba") / 1000);
+    tempo_bomba = relogio.formatarSeg(DelayAssincrono.tempo_restante_comp("bomba") / 1000);
     this->lcd->print("Regando  ");
     this->lcd->setCursor(this->para_esquerda(tempo_bomba), 3);
     this->lcd->print(tempo_bomba);
@@ -149,5 +149,5 @@ void Display::tela2() {
   this->lcd->setCursor(0, 3);
   this->lcd->print("Horario:");
   this->lcd->setCursor(0, 11);
-  this->lcd->print(relogio.getTempoString());
+  this->lcd->print("Indisp...");
 }

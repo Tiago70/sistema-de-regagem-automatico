@@ -18,6 +18,7 @@ private:
 public:
   void begin(int CE, int IO, int CLK);
   String getTempoString();
+  String formatarSeg(uint32_t segundos);
   uint32_t timestamp();
 };
 

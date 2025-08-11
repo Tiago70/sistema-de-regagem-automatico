@@ -79,4 +79,20 @@ String relogioObj::getTempoString() {
   return String(buffer);
 }
 
+
+String relogioObj::formatarSeg(uint32_t segundos) {
+  uint8_t horas;
+  uint8_t minutos;
+
+  horas = segundos / 3600;
+  segundos %= 3600;
+  minutos = segundos / 60;
+  segundos %= 60;
+
+  char buffer[9];
+  sprintf(buffer, "%02d:%02d:%02d", horas, minutos, segundos);
+
+  return buffer;
+}
+
 relogioObj relogio;

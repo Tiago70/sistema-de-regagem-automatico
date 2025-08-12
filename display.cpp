@@ -13,7 +13,7 @@ Display::Display(uint8_t largura, uint8_t altura) {
   this->altura = altura;
 
   this->telas[0] = &Display::tela1;
-  // this->telas[1] = tela2;
+  this->telas[1] = &Display::tela2;
 
   this->telaAtual = 0;
 }
@@ -147,7 +147,9 @@ void Display::tela2() {
 
   // tempo atual
   this->lcd->setCursor(0, 3);
-  this->lcd->print("Horario:");
-  this->lcd->setCursor(0, 11);
-  this->lcd->print("Indisp...");
+  this->lcd->print("Hora: Indisponivel");
+
+  /*adiicionar o horário do rtc quando o relógioestiver disponível*/
+  // this->lcd->setCursor(0, 11);
+  // this->lcd->print(relogio.getTempoString());
 }

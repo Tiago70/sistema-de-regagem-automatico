@@ -74,7 +74,7 @@ public:
   void tela2();
 
   // funções para formatação
-  int para_esquerda(String texto);
+  String formatar_valor(String texto);
   void printReverso(String texto, int coluna, int linha);
 };
 

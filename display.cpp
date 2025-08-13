@@ -48,8 +48,10 @@ void Display::atualizar_tela() {
   (this->*telas[this->telaAtual])();
 }
 
-int Display::para_esquerda(String texto) {
-  return this->largura - texto.length();
+String Display::formatar_valor(String texto) {
+  char buffer[8];
+  sprintf(buffer, "%7s", texto.c_str());
+  return buffer;
 }
 
 void Display::tela1() {
@@ -60,30 +62,30 @@ void Display::tela1() {
 
   this->lcd->home();
   this->lcd->print("Temp");
-  this->lcd->setCursor(this->para_esquerda(temperatura), 0);
-  this->lcd->print(temperatura);
+  this->lcd->setCursor(13, 0);
+  this->lcd->print(this->formatar_valor(temperatura));
 
   this->lcd->setCursor(0, 1);
   this->lcd->print("Condut");
-  this->lcd->setCursor(this->para_esquerda(condutividade), 1);
-  this->lcd->print(condutividade);
+  this->lcd->setCursor(13, 1);
+  this->lcd->print(this->formatar_valor(condutividade));
 
   this->lcd->setCursor(0, 2);
   this->lcd->print("Luz");
-  this->lcd->setCursor(this->para_esquerda(luminosidade), 2);
-  this->lcd->print(luminosidade);
+  this->lcd->setCursor(13, 2);
+  this->lcd->print(this->formatar_valor(luminosidade));
 
   this->lcd->setCursor(0, 3);
   String tempo_bomba;
   if (this->bomba_regagem->estado) {
     tempo_bomba = relogio.formatarSeg(DelayAssincrono.tempo_restante_comp("bomba") / 1000);
     this->lcd->print("Em espera");
-    this->lcd->setCursor(this->para_esquerda(tempo_bomba), 3);
+    this->lcd->setCursor(12, 3);
     this->lcd->print(tempo_bomba);
   } else {
     tempo_bomba = relogio.formatarSeg(DelayAssincrono.tempo_restante_comp("bomba") / 1000);
     this->lcd->print("Regando  ");
-    this->lcd->setCursor(this->para_esquerda(tempo_bomba), 3);
+    this->lcd->setCursor(12, 3);
     this->lcd->print(tempo_bomba);
   }
 }
@@ -111,11 +113,11 @@ void Display::tela2() {
   this->lcd->setCursor(12, 0);
   this->lcd->write(byte(1));
 
-  this->lcd->setCursor(5, 0);
-  this->lcd->print(temperaturaMax);
+  this->lcd->setCursor(4, 0);
+  this->lcd->print(this->formatar_valor(temperaturaMax));
 
   this->lcd->setCursor(13, 0);
-  this->lcd->print(temperaturaMin);
+  this->lcd->print(this->formatar_valor(temperaturaMin ));
 
   // condutividade
   this->lcd->setCursor(0, 1);
@@ -125,11 +127,11 @@ void Display::tela2() {
   this->lcd->setCursor(12, 1);
   this->lcd->write(byte(1));
 
-  this->lcd->setCursor(5, 1);
-  this->lcd->print(condutividadeMax);
+  this->lcd->setCursor(4, 1);
+  this->lcd->print(this->formatar_valor(condutividadeMax));
 
   this->lcd->setCursor(13, 1);
-  this->lcd->print(condutividadeMin);
+  this->lcd->print(this->formatar_valor(condutividadeMin));
 
   // luminosidade
   this->lcd->setCursor(0, 2);
@@ -139,15 +141,15 @@ void Display::tela2() {
   this->lcd->setCursor(12, 2);
   this->lcd->write(byte(1));
 
-  this->lcd->setCursor(5, 2);
-  this->lcd->print(luminosidadeMax);
+  this->lcd->setCursor(4, 2);
+  this->lcd->print(this->formatar_valor(luminosidadeMax));
 
   this->lcd->setCursor(13, 2);
-  this->lcd->print(luminosidadeMin);
+  this->lcd->print(this->formatar_valor(luminosidadeMin));
 
   // tempo atual
   this->lcd->setCursor(0, 3);
-  this->lcd->print("Hora: Indisponivel");
+  this->lcd->print("Hora:   Indisponivel");
 
   /*adiicionar o horário do rtc quando o relógioestiver disponível*/
   // this->lcd->setCursor(0, 11);

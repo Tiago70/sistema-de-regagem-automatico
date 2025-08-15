@@ -6,13 +6,12 @@
 #include "cartaoSD.h"
 #include "display.h"
 
-
 // adicionar a biblioteca quando utilar o rtc
 // #include "relogio.h"
 
-Temperatura temp_sensor(2);
-Condutivimetro condut_sensor(13, &temp_sensor);
-Luminosidade lumin_sensor(12);
+Temperatura temp_sensor(7);
+Condutivimetro condut_sensor(A2, &temp_sensor);
+Luminosidade lumin_sensor(A0);
 Bomba bomba_regagem(5);
 Display tela(20, 4);
 cartaoSD micro_SD(53);
@@ -32,11 +31,11 @@ void setup() {
   tela.begin(&temp_sensor, &condut_sensor, &lumin_sensor, &bomba_regagem);
 
   // definindo os intervalos (valor em milisegundos)
-  DelayAssincrono.novoDelayMillis("temperatura", temp_sensor.ativar_medicao, 5000);
+  DelayAssincrono.novoDelayMillis("temperatura", temp_sensor.ativar_medicao, 6000);
   DelayAssincrono.novoDelayMillis("condutividade", condut_sensor.ativar_medicao, 5000);
-  DelayAssincrono.novoDelayMillis("luminosidade", lumin_sensor.ativar_medicao, 5000);
-  DelayAssincrono.novoDelayMillis("boma", bomba_regagem.trocar_estado, 5000, 10000);
-  DelayAssincrono.novoDelayMillis("tela", tela.autorizar, 1000);
+  DelayAssincrono.novoDelayMillis("luminosidade", lumin_sensor.ativar_medicao, 3000);
+  DelayAssincrono.novoDelayMillis("bomba", bomba_regagem.trocar_estado, 60000, 90000);
+  DelayAssincrono.novoDelayMillis("tela", tela.autorizar, 500);
 
   // DelayAssincrono.novoDelayMillis("Cartao SD", micro_SD.autorizar_anotacao, 5);
 

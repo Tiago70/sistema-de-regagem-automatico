@@ -77,7 +77,7 @@ void Display::tela1() {
 
   this->lcd->setCursor(0, 3);
   String tempo_bomba;
-  if (this->bomba_regagem->estado) {
+  if (!this->bomba_regagem->estado) {
     tempo_bomba = relogio.formatarSeg(DelayAssincrono.tempo_restante_comp("bomba") / 1000);
     this->lcd->print("Em espera");
     this->lcd->setCursor(12, 3);

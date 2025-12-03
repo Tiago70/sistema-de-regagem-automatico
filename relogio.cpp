@@ -1,8 +1,8 @@
 #include "relogio.h"
 
-void relogioObj::begin(int CE, int IO, int CLK) {
+void relogioObj::begin(int CE, int CLK, int IO) {
   // Instância do RTC com pinos CE, IO, CLK
-  this->rtc = new Ds1302(CE, IO, CLK);
+  this->rtc = new Ds1302(CE, CLK, IO);
   this->rtc->init();
 
   // código de configuração do horário do rtc

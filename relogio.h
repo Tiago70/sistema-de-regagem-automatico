@@ -16,7 +16,7 @@ private:
   Ds1302* rtc = nullptr;
 
 public:
-  void begin(int CE, int IO, int CLK);
+  void begin(int CE, int CLK, int IO);
   String getTempoString();
   String formatarSeg(uint32_t segundos);
   uint32_t timestamp();
